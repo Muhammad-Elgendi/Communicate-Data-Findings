@@ -16,7 +16,7 @@
 
 <!-- General and theme style sheets -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/reveal.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/theme/serif.css" id="theme">
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -13193,26 +13193,6 @@ a.anchor-link {
 </head>
 
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-<style type="text/css">
-//div.output_wrapper {
-//  margin-top: 0px;
-//}
-.input_hidden {
-  display: none;
-//  margin-top: 5px;
-}
-</style>
-
-<script>
-$(document).ready(function(){
-  $(".output_wrapper").click(function(){
-      $(this).prev('.input_hidden').slideToggle();
-  });
-})
-</script>
-
 <body>
 
 
@@ -13225,7 +13205,7 @@ $(document).ready(function(){
 <h1 id="Bay-Wheels'-Bicycle-Sharing-System-Usage-Analysis">Bay Wheels' Bicycle Sharing System Usage Analysis<a class="anchor-link" href="#Bay-Wheels'-Bicycle-Sharing-System-Usage-Analysis">&#182;</a></h1><h2 id="by-Muhammad-Elgendi">by Muhammad Elgendi<a class="anchor-link" href="#by-Muhammad-Elgendi">&#182;</a></h2>
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13242,96 +13222,7 @@ Every record has the following variables and they can be catagorized into :</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input_hidden">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import all packages and set plots to be embedded inline</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
-
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="c1"># suppress warnings from final output</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input_hidden">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># load in the dataset into a pandas dataframe and do preprocessing</span>
-
-<span class="c1"># read in the dataset</span>
-<span class="n">aug20</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;202008-baywheels-tripdata.csv&#39;</span><span class="p">)</span>
-
-<span class="c1"># remove unuseful colums</span>
-<span class="n">aug20</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;start_lat&#39;</span><span class="p">,</span><span class="s1">&#39;start_lng&#39;</span><span class="p">,</span><span class="s1">&#39;end_lat&#39;</span><span class="p">,</span><span class="s1">&#39;end_lng&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># convert features to the correct type</span>
-<span class="c1"># convert rideable_type to catagory variable</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;rideable_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;rideable_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
-<span class="c1"># convert started_at to datetime variable</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;started_at&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;started_at&#39;</span><span class="p">])</span>
-<span class="c1"># convert ended_at to datetime variable</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;ended_at&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;ended_at&#39;</span><span class="p">])</span>
-<span class="c1"># convert start_station_id to string variable </span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_station_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_station_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
-<span class="c1"># convert end_station_id to string variable</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;end_station_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;end_station_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
-
-<span class="c1"># feature engineering</span>
-<span class="c1"># add new variables for trip duration, start_date, start_hour, and start_day to the dataset</span>
-
-<span class="c1"># calculate difference between timestamps in seconds</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;ended_at&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;started_at&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
-
-<span class="c1"># calculate difference between timestamps in minutes</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;duration_min&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">60</span>
-
-<span class="c1"># add date in format year - month - day </span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;started_at&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="c1"># add hour of the day</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;started_at&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H&#39;</span><span class="p">)</span>
-
-<span class="c1"># add weekday</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;started_at&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%A&#39;</span><span class="p">)</span>
-
-<span class="c1"># remove trips that have duration &lt; 0 </span>
-<span class="n">aug20</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">aug20</span><span class="p">[</span><span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;duration_sec&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># issue: convert start_hour to int</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_hour&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_hour&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-
-<span class="c1"># issue : convert start_day to ordinal category</span>
-<span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Saturday&#39;</span><span class="p">,</span><span class="s1">&#39;Sunday&#39;</span><span class="p">,</span><span class="s1">&#39;Monday&#39;</span><span class="p">,</span><span class="s1">&#39;Tuesday&#39;</span><span class="p">,</span><span class="s1">&#39;Wednesday&#39;</span><span class="p">,</span><span class="s1">&#39;Thursday&#39;</span><span class="p">,</span><span class="s1">&#39;Friday&#39;</span><span class="p">]</span>
-<span class="n">weekday_type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">(</span><span class="n">days</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">aug20</span><span class="p">[</span><span class="s1">&#39;start_day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">weekday_type</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13340,9 +13231,8 @@ Every record has the following variables and they can be catagorized into :</p>
 
 </div>
 </div>
-</div>
+</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
@@ -13381,8 +13271,6 @@ Every record has the following variables and they can be catagorized into :</p>
 </div>
 </div>
 
-</div>
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -13405,7 +13293,7 @@ Every record has the following variables and they can be catagorized into :</p>
 </div>
 </div>
 
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13414,9 +13302,8 @@ Every record has the following variables and they can be catagorized into :</p>
 
 </div>
 </div>
-</div>
+</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
@@ -13433,8 +13320,6 @@ Every record has the following variables and they can be catagorized into :</p>
 
     </div>
 </div>
-</div>
-
 </div>
 
 <div class="output_wrapper">
@@ -13459,7 +13344,7 @@ Every record has the following variables and they can be catagorized into :</p>
 </div>
 </div>
 
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13471,9 +13356,8 @@ For members there exist a consistent usage over the whole week, their intense us
 
 </div>
 </div>
-</div>
+</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input_hidden">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
@@ -13510,8 +13394,6 @@ For members there exist a consistent usage over the whole week, their intense us
 </div>
 </div>
 
-</div>
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -13534,7 +13416,7 @@ For members there exist a consistent usage over the whole week, their intense us
 </div>
 </div>
 
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13567,7 +13449,7 @@ require(
             progress: true,
             history: true,
 
-            transition: "slide",
+            transition: "none",
 
             // Optional libraries used to extend on reveal.js
             dependencies: [
@@ -13588,7 +13470,7 @@ require(
         Reveal.addEventListener('slidechanged', update);
 
         function setScrollingSlide() {
-            var scroll = false
+            var scroll = true
             if (scroll === true) {
               var h = $('.reveal').height() * 0.95;
               $('section.present').find('section')
